@@ -41,17 +41,20 @@
 
         let ballSpeedX = 3;
         let ballSpeedY = 2;
-
+        
+        //PLAYER PADDLE FUNCTION
         function player(){
             ctx.fillStyle = 'green';
             ctx.fillRect(playerX, playerY, paddleWidth, paddleHeight);
         }
-
+        
+        //COMPUTER PADDLE FUNCTION
         function ai(){
             ctx.fillStyle = 'yellow';
             ctx.fillRect(aiX, aiY, paddleWidth, paddleHeight);
         }
-
+        
+        //TABLE FUNCTION
         function table(){
             //Table
             ctx.fillStyle = "black";
@@ -62,7 +65,8 @@
                 ctx.fillRect(cw/2 - lineWidth/2, linePosition, lineWidth, lineHeight);
             }
         }
-
+        
+        //BALL FUNCTION
         function ball(){
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(ballX, ballY, ballSize, ballSize);
@@ -79,6 +83,24 @@
             }
         }
         
+        //MOUSE MOVEMENT(PADDLE)
+        topCanvas = canvas.offsetTop;
+        console.log(topCanvas);
+
+        function playerPosition(e){
+            // console.log("Mouse position is: " + (e.clientY - topCanvas));
+            playerY = e.clientY - topCanvas - paddleHeight/2;
+
+            if( playerY >= ch - paddleHeight){
+                playerY = ch - paddleHeight;
+            }
+            if( playerY <= 0){
+                playerY = 0;
+            }
+        }
+        canvas.addEventListener("mousemove", playerPosition);
+        
+        //ALL FUNCTIONS TOGETHER
         function game(){
             table();
             ball();
@@ -86,6 +108,7 @@
             ai();
         }
         
+        //GAME SPEED
         setInterval(game, 1000 / 60);
             
     </script>
