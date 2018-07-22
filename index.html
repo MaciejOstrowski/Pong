@@ -76,10 +76,12 @@
 
             if(ballY <= 0 || ballY + ballSize >= ch){
                 ballSpeedY = -ballSpeedY;
+                speedUp();
             }
 
             if(ballX <= 0 || ballX + ballSize >= cw){
                 ballSpeedX = -ballSpeedX;
+                speedUp();
             }
         }
         
@@ -97,7 +99,36 @@
             if( playerY <= 0){
                 playerY = 0;
             }
+
+            aiY = playerY;
         }
+        
+        //Increase ballSpeed function
+        function speedUp(){
+            // console.log(ballSpeedX + ", " + ballSpeedY);
+
+            //Speed X
+            if(ballSpeedX > 0 && ballSpeedX < 16){
+                ballSpeedX += 0.3;
+            }
+            else if (ballSpeedX < 0 && ballSpeedX > -16){
+                ballSpeedX -= 0.3;
+            }
+            //Speed Y
+            if (ballSpeedY > 0 && ballSpeedY < 16) {
+                ballSpeedY += 0.3;
+            }
+            else if (ballSpeedY < 0 && ballSpeedY > -16) {
+                ballSpeedY -= 0.3;
+            }
+        }
+
+        //ARTIFICIAL INTELLIGENCE
+        function aiPosition(){
+            
+        }
+        
+        //PLAYER MOUSEMOVE EVENTLISTENER
         canvas.addEventListener("mousemove", playerPosition);
         
         //ALL FUNCTIONS TOGETHER
